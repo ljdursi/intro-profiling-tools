@@ -1,0 +1,19 @@
+MAIN=main
+LOG=
+
+# If you want extra logging including sections
+# of code, uncomment the following 
+#MAIN=main-morelogging
+#LOG=-D_mpilog
+
+CFLAGS=-g -Wall -std=c99 -mpilog $(LOG)
+CC=mpecc
+
+gameoflife-mpe: $(MAIN).o array.o gol.o options.o partition.o rundata.o
+	$(CC) -o $@ $^ -lm -mpilog
+
+clean:
+	rm -f *.o gameoflife-mpe gol_*txt *log2
+
+cleandata:
+	rm -f gol_*txt
