@@ -8,7 +8,7 @@
 * Have to be able to quantify where your problem spends its time
 * Find bottlenecks
 
-![The Tuning Cycle](images/tuning-cycle-labeled.png)
+![The Tuning Cycle](images/halfsize/tuning-cycle-labeled.png)
 
 ## Profiling Tools
 * Here we'll focus on profiling.
@@ -16,7 +16,7 @@
 * Tools are general
 * Range of tools available for linux clusters
 
-![Some linux profiling/tuning tools](images/tools-screenshots.png)
+![Some linux profiling/tuning tools](images/halfsize/tools-screenshots.png)
 
 ## Profiling A Code
 * Where in your program is time being spent?
@@ -93,7 +93,7 @@ Allocated Nodes:
 $ ssh gpc-f109n001
 gpc-f109n001-$ top
 ```
-![Output of top](images/top-output.png)
+![Output of top](images/halfsize/top-output.png)
 
 Even this quick status shows something:
 
@@ -383,12 +383,12 @@ $ openss
 ```
 launches an experiment wizard
 
-![Open|SpeedShop Wizard](images/openspeedshop-wizard.png)
+![Open|SpeedShop Wizard](images/halfsize/openspeedshop-wizard.png)
 
 * There are different experiments that you can run -- pcsamp is like gprof
 * It will show top functions (or statements) by default; doubleclicking takes to source line.
 
-![Open|SpeedShop Profile View](images/openspeedshop-profile.png)
+![Open|SpeedShop Profile View](images/halfsize/openspeedshop-profile.png)
 
 ## Open|Speedshop - Compare Experiments
 
@@ -399,7 +399,7 @@ first (line 82) requires .06 seconds,
 the second (line 74) requires only
 0.01 -- a 6x speedup!
 
-![Open|SpeedShop Compare Experiments View](images/openspeedshop-compare.png)
+![Open|SpeedShop Compare Experiments View](images/halfsize/openspeedshop-compare.png)
 
 
 
@@ -410,14 +410,14 @@ the second (line 74) requires only
 * Saves recent accesses, a line of data at a time
 * When accessing memory in order, only one access to slow main mem for many data points - additional accesses within that cache line (~64B) is free
 * Much faster (~1ns to access cache, ~100ns to access main memory)
-![Good memory access ordering in array - along cache lines](images/cacheorder-good.png)
+![Good memory access ordering in array - along cache lines](images/halfsize/cacheorder-good.png)
 
 ## Cache Thrashing
 
 * When accessing memory out of order, much worse
 * Each access is new cache line (cache miss)
 	- slow access to main memory
-![Bad memory access ordering in array - across cache lines](images/cacheorder-bad.png)
+![Bad memory access ordering in array - across cache lines](images/halfsize/cacheorder-bad.png)
 
 ## Valgrind and kcachegrind
 * Tools like valgrind can measure cache performance
@@ -428,7 +428,7 @@ $ valgrind --tool=cachegrind ./mvm --matsize=2500
 $ kcachegrind cachegrind.out.20275
 ```
 
-![kcachegrind for viewing cache performance](images/kcachegrind.png)
+![kcachegrind for viewing cache performance](images/halfsize/kcachegrind.png)
 
 ## Cache Performance
 * In C, cache-friendly order is to make last index most quickly varying
@@ -496,7 +496,7 @@ and their min/average/max time spent by thread.
 * Good measure of load balance -- underused threads?
 * Here, all #s equal -- very good load balance
 
-![OpenSpeedShop LoadBalance View](images/openss-loadbalance.png)
+![OpenSpeedShop LoadBalance View](images/halfsize/openss-loadbalance.png)
 
 ## Open|Speedshop
 * Also has very powerful UNIX command line tools
@@ -514,7 +514,7 @@ openss -f `./mvm --transpose pcsamp
 - 4+ dies of overcrowding
 * Empty cell w/ 3 neighbours becomes live
 
-![Game of Life](images/GOL.png)
+![Game of Life](images/halfsize/GOL.png)
 
 ## IPM
 
@@ -534,19 +534,19 @@ $ ipm_parse -html [uglyname]
 
 * Overview: global stats, % of MPI time by call, buffer size
 
-![IPM overview](images/IPM-overview.png)
+![IPM overview](images/halfsize/IPM-overview.png)
 
 * Load balance view: Are all tasks doing same amount of work?
 
-![IPM Load Balance View](images/IPM-LB-overview.png)
+![IPM Load Balance View](images/halfsize/IPM-LB-overview.png)
 
 * Distribution of time, # of calls by buffer size (here -- all very small messages!)
 
-![IPM Message Distribution](images/IPM-msgsize.png)
+![IPM Message Distribution](images/halfsize/IPM-msgsize.png)
 
 * Communications patterns, total switch traffic (I/O + MPI)
 
-![IPM Communications Patterns](images/IPM-msgpatterns.png)
+![IPM Communications Patterns](images/halfsize/IPM-msgpatterns.png)
 
 ## MPE/Jumpshot
 * More detailed view of MPI calls
@@ -561,13 +561,13 @@ $ clog2TOslog2 gol.clog2
 $ jumpshot gol.slog2
 ```
 
-![MPE messages - blocking send receives](images/jumpshot-nooverlap.png)
+![MPE messages - blocking send receives](images/halfsize/jumpshot-nooverlap.png)
 
 ## Overlapping communication & Computation:
 Much less synchronized (good); but shows poor load
 balance
 
-![MPE messages - blocking send receives](images/jumpshot-overlap.png)
+![MPE messages - blocking send receives](images/halfsize/jumpshot-overlap.png)
 
 ## Scalasca - Analysis
 * Low-level automated instrumentation of code.
@@ -578,11 +578,11 @@ balance
     - Then `scalasca -examine` the resulting directory.
 
 * Game of life: can take a look at data sent, received
-![Scalasca - Data Sent](images/scalasca-datasent.png)
+![Scalasca - Data Sent](images/halfsize/scalasca-datasent.png)
 * Can also see load imbalance -- by function, process
-![Scalasca - Load Imbalance](images/scalasca-loadimbalance.png)
+![Scalasca - Load Imbalance](images/halfsize/scalasca-loadimbalance.png)
 * MVM - can show where threads are idle
-![Scalasca - Load Imbalance](images/scalasca-idlethreads.png)
+![Scalasca - Load Imbalance](images/halfsize/scalasca-idlethreads.png)
 (Thread 0 doing way too much work!)
 
 ## Commercial Options
